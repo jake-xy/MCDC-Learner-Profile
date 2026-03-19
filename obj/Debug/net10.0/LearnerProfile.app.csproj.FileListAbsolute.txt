@@ -129,3 +129,4 @@ C:\xyrus\Coding Related\C# Code\ASP.NET CORE\Day Care Learner Profiling\LearnerP
 C:\xyrus\Coding Related\C# Code\ASP.NET CORE\Day Care Learner Profiling\LearnerProfile.app\obj\Debug\net10.0\LearnerProfile.app.pdb
 C:\xyrus\Coding Related\C# Code\ASP.NET CORE\Day Care Learner Profiling\LearnerProfile.app\obj\Debug\net10.0\LearnerProfile.app.genruntimeconfig.cache
 C:\xyrus\Coding Related\C# Code\ASP.NET CORE\Day Care Learner Profiling\LearnerProfile.app\obj\Debug\net10.0\ref\LearnerProfile.app.dll
+C:\xyrus\Coding Related\C# Code\ASP.NET CORE\Day Care Learner Profiling\LearnerProfile.app\obj\Debug\net10.0\LearnerProfile.app.sourcelink.json
