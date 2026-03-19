@@ -1,7 +1,12 @@
+using LearnerProfile.app.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connString = "Data Source=LearnerProfile.db";
+builder.Services.AddSqlite<LearnerProfileContext>(connString); // dependency injection
 
 var app = builder.Build();
 
