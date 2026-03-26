@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LearnerProfile.app.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
-        <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid d-flex align-items-center">
                 
                 <a class="navbar-brand me-4" asp-area="" asp-controller="Home" asp-action="Index">Manila Child Development Center</a>
@@ -48,10 +48,10 @@
                             
                             <li class="nav-item mb-2">ACCOUNT</li>
                             <li class="nav-item mb-2">
-                                <a class="btn btn-primary w-100" href="#">Login</a>
+                                <a class="btn btn-primary w-100" asp-controller="Auth" asp-action="Login">Login</a>
                             </li>
                             <li class="nav-item mb-2">
-                                <a class="btn btn-primary w-100" href="#">Sign Up</a>
+                                <a class="btn btn-primary w-100" asp-controller="Home" asp-action="RegisterLanding">Sign Up</a>
                             </li>
                         </ul>
                     </div>
@@ -60,13 +60,13 @@
         </nav>
     </header>
     
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container flex-grow-1 d-flex flex-column" style="margin-bottom: 60px;">
+        <main role="main" class="flex-grow-1 d-flex flex-column">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted mt-auto">
         <div class="container">
             &copy; 2026 - LearnerProfile.app - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

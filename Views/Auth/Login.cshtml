@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model LearnerProfile.app.ViewModels.Auth.LoginViewModel
+
+<div class="container text-center flex-grow-1 w-100 d-flex align-items-center justify-content-center">
+    <div class="card shadow-sm border-0 col-12 col-md-5" style="min-height: 250px;">
+        <div class="card-body d-flex flex-column align-items-center">
+            
+            @* success message right after successful registration *@
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show w-100 text-center" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @* error message for invalid login attempts *@
+            @if (!ViewData.ModelState.IsValid && ViewData.ModelState[string.Empty]?.Errors.Count > 0)
+            {
+                <div class="alert alert-danger alert-dismissible fade show w-100 text-center" role="alert">
+                    @foreach (var error in ViewData.ModelState[string.Empty]!.Errors)
+                    {
+                        @error.ErrorMessage
+                    }
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <h2 class="mb-5">Login</h2>
+
+            <form class="w-100" method="post" asp-controller="Auth" asp-action="Login">
+                <div class="form-floating mb-3 text-start">
+                    <input type="email" class="form-control" asp-for="Email" placeholder="name@example.com" required>
+                    <label asp-for="Email">Email address</label>
+                </div>
+
+                <div class="form-floating mb-4 text-start">
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Password" required>
+                    <label asp-for="Password">Password</label>
+                </div>
+
+                <button class="btn btn-primary btn-lg w-100 mb-3" type="submit">Sign In</button>
+
+                <div class="d-flex justify-content-between text-muted mt-2">
+                    <a href="#" class="text-decoration-none">Forgot password?</a>
+                    <a asp-controller="Home" asp-action="RegisterLanding" class="text-decoration-none">Create an account</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

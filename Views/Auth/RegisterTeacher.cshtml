@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model LearnerProfile.app.ViewModels.Home.RegisterTeacherViewModel
+
+<div class="container text-center flex-grow-1 w-100 d-flex align-items-center justify-content-center">
+    <div class="card shadow-sm border-0 col-12 col-md-10" style="min-height: 250px;">
+        <div class="card-body d-flex flex-column align-items-center">
+
+            @* error message for invalid register attempts *@
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger alert-dismissible fade show w-100 text-start" role="alert">
+                    
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <span class="d-block">@error.ErrorMessage</span>
+                    }
+                    
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <h2 class="mb-5">Register as Teacher</h2>
+            
+            <form class="w-100 text-start" method="post" asp-controller="Auth" asp-action="RegisterTeacher">
+    
+                <h5 class="mb-3 text-muted">Account Details</h5>
+                
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" asp-for="Email" placeholder="name@example.com" required>
+                    <label asp-for="Email">Email Address</label>
+                </div>
+
+                <div class="row g-2 mb-4">
+                    <div class="col-md-6 form-floating">
+                        <input type="password" class="form-control" asp-for="PasswordHash" placeholder="Password" required>
+                        <label asp-for="PasswordHash">Password</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <input type="password" class="form-control" name="ConfirmPassword" placeholder="Confirm Password" required>
+                        <label for="ConfirmPassword">Confirm Password</label>
+                    </div>
+                </div>
+
+                <h5 class="mb-3 text-muted">Personal Profile</h5>
+
+                <div class="row g-2 mb-3">
+                    <div class="col-md-4 form-floating">
+                        <input type="text" class="form-control" asp-for="FirstName" placeholder="First Name" required>
+                        <label asp-for="FirstName">First Name</label>
+                    </div>
+                    <div class="col-md-4 form-floating">
+                        <input type="text" class="form-control" asp-for="MiddleName" placeholder="Middle Name">
+                        <label asp-for="MiddleName">Middle Name</label>
+                    </div>
+                    <div class="col-md-4 form-floating">
+                        <input type="text" class="form-control" asp-for="LastName" placeholder="Last Name" required>
+                        <label asp-for="LastName">Last Name</label>
+                    </div>
+                </div>
+
+                <div class="row g-2 mb-4">
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" asp-for="ContactNumber" placeholder="Contact Number" required>
+                        <label asp-for="ContactNumber">Contact Number</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" asp-for="IdNumber" placeholder="Employee ID" required>
+                        <label asp-for="IdNumber">Employee ID</label>
+                    </div>
+                </div>
+
+                <button class="btn btn-warning btn-lg w-100 mb-2" type="submit">Complete Teacher Registration</button>
+                <a asp-controller="Home" asp-action="RegisterLanding" class="btn btn-outline-secondary w-100">Back</a>
+            </form>
+
+        </div>
+    </div>
+</div>
