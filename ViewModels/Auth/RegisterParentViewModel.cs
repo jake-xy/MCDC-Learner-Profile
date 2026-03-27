@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LearnerProfile.app.ViewModels.Home;
+namespace LearnerProfile.app.ViewModels.Auth;
 
-public class RegisterTeacherViewModel
+public class RegisterParentViewModel
 {
     // -- account details --
     [Required(ErrorMessage = "Email address is required.")]
@@ -19,11 +19,10 @@ public class RegisterTeacherViewModel
     [Compare("PasswordHash", ErrorMessage = "The password and confirmation password do not match.")]
     public string ConfirmPassword { get; set; } = "";
 
-    // -- personal proile --
+    // -- personal profile --
     [Required(ErrorMessage = "First name is required.")]
     public string FirstName { get; set; } = "";
 
-    // optional
     public string MiddleName { get; set; } = "";
 
     [Required(ErrorMessage = "Last name is required.")]
@@ -32,7 +31,4 @@ public class RegisterTeacherViewModel
     [Required(ErrorMessage = "Contact number is required.")]
     [Phone(ErrorMessage = "Please enter a valid phone number.")]
     public string ContactNumber { get; set; } = "";
-
-    [Required(ErrorMessage = "Employee ID is required.")]
-    public string IdNumber { get; set; } = "";
 }
