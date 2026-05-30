@@ -3,7 +3,7 @@ using System.Security.Claims;
 using LearnerProfile.app.Data;
 using LearnerProfile.app.Models;
 using LearnerProfile.app.ViewModels.Auth;
-using LearnerProfile.app.ViewModels.Home;
+// using LearnerProfile.app.ViewModels.Home;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;

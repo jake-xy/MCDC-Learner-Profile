@@ -12,5 +12,30 @@ namespace LearnerProfile.app.Controllers
             return View();
         }
 
+        public IActionResult Teachers()
+        {
+            return View();
+        }
+
+        public IActionResult Enrollment()
+        {
+            return View();
+        }
+
+        public IActionResult Attendance()
+        {
+            return View();
+        }
+
+        public IActionResult Grades()
+        {
+            return View();
+        }
+
+        public IActionResult Payments()
+        {
+            return View();
+        }
+
     }
 }

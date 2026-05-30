@@ -10,22 +10,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parent Page</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/LearnerProfile.app.styles.css" asp-append-version="true" />
+    <style>
+        @@media (min-width: 992px) {
+            .sidebar-desktop {
+                max-width: 18%;
+            }
+        }
+
+        .profile-avatar {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+        }
+    </style>
 </head>
-<body>
-    <header>
+<body class="d-flex flex-column flex-lg-row vh-100">
 
-    </header>
+    <!-- DESKTOP SIDEBAR -->
+    <aside class="sidebar-desktop d-none d-lg-flex flex-column p-4 bg-white border-end">
+        <!-- LOGO -->
+        <a class="d-flex align-items-center mb-4 link-dark text-decoration-none">
+            <span class="fs-4 fw-bold text-primary">Manila Child Development Center</span>
+        </a>
+        
+        <!-- NAVIGATION MENU -->
+        <ul class="nav nav-pills flex-column mb-auto gap-2">
+            <li class="nav-item"><a asp-controller="Parent" asp-action="Index" class="nav-link @(ViewData["Title"]?.ToString() == "Dashboard" ? "active" : "text-dark")">Dashboard</a></li>
+            <li class="nav-item"><a asp-controller="Parent" asp-action="Teachers" class="nav-link @(ViewData["Title"]?.ToString() == "Teachers" ? "active" : "text-dark")">Teachers</a></li>
+            <li class="nav-item"><a asp-controller="Parent" asp-action="Enrollment" class="nav-link @(ViewData["Title"]?.ToString() == "Enrollment" ? "active" : "text-dark")">Enrollment</a></li>
+            <li class="nav-item"><a asp-controller="Parent" asp-action="Attendance" class="nav-link @(ViewData["Title"]?.ToString() == "Attendance" ? "active" : "text-dark")">Attendance</a></li>
+            <li class="nav-item"><a asp-controller="Parent" asp-action="Grades" class="nav-link @(ViewData["Title"]?.ToString() == "Grades" ? "active" : "text-dark")">Grades</a></li>
+            <li class="nav-item"><a asp-controller="Parent" asp-action="Payments" class="nav-link @(ViewData["Title"]?.ToString() == "Payments" ? "active" : "text-dark")">Payments</a></li>
+        </ul>
+        
+        <hr>
+        
+        <!-- USER PROFILE -->
+        <div class="row g-0 align-items-center text-start pe-2">
+            <div class="col-auto">
+                <img src="https://ui-avatars.com/api/?name=Jane+Doe&background=random" alt="Avatar" class="profile-avatar rounded-circle">
+            </div>
+            <div class="col ps-3">
+                <div class="fw-bold lh-1 mb-1">Jane Doe</div>
+                <div class="text-muted small lh-1">jane.doe@example.com</div>
+            </div>
+        </div>
+    </aside>
 
-    <div class="contain">
-        <main role="main">
-            @RenderBody()
-        </main>
+    <!-- MOBILE HEADER & OFFCANVAS(toggleable sidebar) -->
+    <div class="d-lg-none">
+        <!-- Top Left Hamburger Header -->
+        <div class="bg-white border-bottom p-3 d-flex align-items-center">
+            <button class="btn btn-outline-secondary border-0 p-1 me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                <!-- Hamburger Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </button>
+            <span class="fs-5 fw-bold text-primary">LearnerProfile</span>
+        </div>
+
+        <!-- Offcanvas -->
+        <div class="offcanvas offcanvas-start w-100" tabindex="-1" id="mobileSidebar">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title fw-bold text-primary">Menu</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column p-4">
+                
+                <!-- User Profile Card -->
+                <div class="dropdown mb-4 pb-4 border-bottom">
+                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="mobileProfileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="row g-0 align-items-center w-100 text-start">
+                            <div class="col-auto">
+                                <img src="https://ui-avatars.com/api/?name=Jane+Doe&background=random" alt="Avatar" class="profile-avatar rounded-circle">
+                            </div>
+                            <div class="col ps-3 pe-2">
+                                <div class="fw-bold lh-1 mb-1">Jane Doe</div>
+                                <div class="text-muted small lh-1">jane.doe@example.com</div>
+                            </div>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu w-100 shadow mt-2" aria-labelledby="mobileProfileDropdown">
+                        <li><a class="dropdown-item" href="#">Manage your account</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form asp-controller="Auth" asp-action="Logout" method="post">
+                                <button class="dropdown-item text-danger" type="submit">Sign out</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Navigation Menu -->
+                <ul class="nav nav-pills flex-column mb-auto gap-2">
+                    <li class="nav-item"><a asp-controller="Parent" asp-action="Index" class="nav-link @(ViewData["Title"]?.ToString() == "Dashboard" ? "active" : "text-dark")">Dashboard</a></li>
+                    <li class="nav-item"><a asp-controller="Parent" asp-action="Teachers" class="nav-link @(ViewData["Title"]?.ToString() == "Teachers" ? "active" : "text-dark")">Teachers</a></li>
+                    <li class="nav-item"><a asp-controller="Parent" asp-action="Enrollment" class="nav-link @(ViewData["Title"]?.ToString() == "Enrollment" ? "active" : "text-dark")">Enrollment</a></li>
+                    <li class="nav-item"><a asp-controller="Parent" asp-action="Attendance" class="nav-link @(ViewData["Title"]?.ToString() == "Attendance" ? "active" : "text-dark")">Attendance</a></li>
+                    <li class="nav-item"><a asp-controller="Parent" asp-action="Grades" class="nav-link @(ViewData["Title"]?.ToString() == "Grades" ? "active" : "text-dark")">Grades</a></li>
+                    <li class="nav-item"><a asp-controller="Parent" asp-action="Payments" class="nav-link @(ViewData["Title"]?.ToString() == "Payments" ? "active" : "text-dark")">Payments</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted mt-auto">
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="main-content-wrapper d-flex flex-column flex-grow-1">
+        <!-- HORIZONTAL TITLE BAR -->
+        <header class="d-none d-lg-flex justify-content-end align-items-center bg-white p-3 border-bottom">
+            <!-- User Profile Card Dropdown -->
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="desktopProfileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="row g-0 align-items-center text-start pe-2">
+                        <div class="col-auto">
+                            <img src="https://ui-avatars.com/api/?name=Mark+Zucc&background=random" alt="Avatar" class="profile-avatar rounded-circle">
+                        </div>
+                        <div class="col ps-3">
+                            <div class="fw-bold lh-1 mb-1">Jane Doe</div>
+                            <div class="text-muted small lh-1">jane.doe@example.com</div>
+                        </div>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow mt-2" aria-labelledby="desktopProfileDropdown">
+                    <li><a class="dropdown-item" href="#">Manage your account</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form asp-controller="Auth" asp-action="Logout" method="post">
+                            <button class="dropdown-item text-danger" type="submit">Sign out</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-grow-1 p-3 p-md-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 mb-0 text-gray-800 fw-bold">@ViewData["Title"]</h1>
+            </div>
+
+            @RenderBody()  
+        </main>
+    </div>
+        
+    @* <footer class="border-top footer text-muted mt-auto">
         <div class="container">
             &copy; 2026 - LearnerProfile.app - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> *@
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

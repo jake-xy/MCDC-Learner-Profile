@@ -53,6 +53,16 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult OurClasses()
+    {
+        return View();
+    }
+
+    public IActionResult OurTeachers()
+    {
+        return View();
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
