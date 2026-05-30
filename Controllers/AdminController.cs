@@ -11,6 +11,26 @@ namespace LearnerProfile.app.Controllers
         {
             return View();
         }
+        
+        public ActionResult Teachers()
+        {
+            return View();
+        }
+
+        public ActionResult Learners()
+        {
+            return View();
+        }
+
+        public ActionResult Parents()
+        {
+            return View();
+        }
+
+        public ActionResult Finance()
+        {
+            return View();
+        }
 
     }
 }
