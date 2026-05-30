@@ -11,6 +11,31 @@ namespace LearnerProfile.app.Controllers
         {
             return View();
         }
+        
+        public ActionResult LessonPlan()
+        {
+            return View();
+        }
+
+        public ActionResult Schedule()
+        {
+            return View();
+        }
+
+        public ActionResult Learners()
+        {
+            return View();
+        }
+
+        public ActionResult Attendance()
+        {
+            return View();
+        }
+
+        public ActionResult Reports()
+        {
+            return View();
+        }
 
     }
 }
